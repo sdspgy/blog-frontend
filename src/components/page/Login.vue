@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="loginTable">
     <h3 class="login-title">管理员登录</h3>
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" status-icon>
       <el-form-item prop="userName">
@@ -59,5 +59,10 @@
 </script>
 
 <style scoped>
-
+.loginTable {
+  width: 30%;
+  height: 300px;
+  margin: 100px auto;
+  border: 1px solid #20a0ff;
+}
 </style>
