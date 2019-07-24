@@ -13,12 +13,12 @@
         <el-input
           style="width: 60%"
           placeholder="请输入内容"
-          v-model="input"
+          v-model="seacher"
           clearable>
         </el-input>
 
         <el-row style="float: right">
-          <el-button type="primary">搜索</el-button>
+          <el-button type="primary" @click="seachers">搜索</el-button>
         </el-row>
 
         <el-table
@@ -37,22 +37,34 @@
             fixed="left">
           </el-table-column>
           <el-table-column
-            prop="date"
-            label="日期"
-            width="180"
+            prop="username"
+            label="姓名"
+            width="80"
             sortable
-            :filters="[{text: '2016-05-01', value: '2016-05-01'}, {text: '2016-05-02', value: '2016-05-02'}, {text: '2016-05-03', value: '2016-05-03'}, {text: '2016-05-04', value: '2016-05-04'}]"
+            :filters="[{text: 'admin', value: 'admin'}, {text: 'pgys', value: 'pgys'}]"
             :filter-method="filterHandler">
           </el-table-column>
           <el-table-column
-            prop="name"
-            label="姓名">
+            prop="email"
+            label="邮箱"
+            width="80"
+            show-overflow-tooltip>
           </el-table-column>
           <el-table-column
-            prop="address"
-            label="地址"
-            width="70"
-            show-overflow-tooltip>
+            prop="roleList"
+            label="角色"
+            width="150"
+            :formatter="formatRoles">
+          </el-table-column>
+          <el-table-column
+            prop="createTime"
+            label="创建时间">
+          </el-table-column>
+          <el-table-column
+            prop="status"
+            label="状态"
+            width="80"
+            :formatter="formatStatus">
           </el-table-column>
           <el-table-column
             fixed="right"
@@ -68,11 +80,11 @@
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
+          :current-page="currentPage"
           :page-sizes="[10, 20, 50, 100]"
-          :page-size="100"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="totalNum">
         </el-pagination>
       </div>
     </transition>
@@ -80,33 +92,21 @@
 </template>
 
 <script>
+  import {page} from '../common/const'
+
   export default {
     name: "User",
     data() {
       return {
         show: true,
-        time: '',
-        input: '',
-        loading: false,
+        time: [],
+        seacher: '',
+        loading: true,
         multipleSelection: [],
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
-        currentPage4: 1,
+        tableData: [],
+        currentPage: page.currentPage,
+        totalNum: '',
+        pageSize: page.pageSize,
       }
     },
 
@@ -115,13 +115,56 @@
     },
 
     methods: {
-      init(){},
+      init() {
+        let params = {
+          'time': JSON.stringify(this.time),
+          'currentPage': this.currentPage,
+          'pageSize': this.pageSize,
+          'seacher': this.seacher,
+          'multipleSelection': JSON.stringify(this.multipleSelection)
+        }
+        debugger
+        this.$http({
+          url: this.$http.adornUrl('admin/sys/user/allUser'),
+          method: 'post',
+          date: ({}),
+          params: params
+        }).then(({data}) => {
+          if (data && data.code === 200) {
+            this.$message({
+              center: true,
+              showClose: true,
+              duration: 2000,
+              type: data.msg,
+              message: 'success',
+            })
+            this.loading = false;
+            this.tableData = data.sysUsers;
+            this.totalNum = data.sysUsers.length;
+          } else {
+            this.$message({
+              center: true,
+              showClose: true,
+              duration: 2000,
+              type: 'warning',
+              message: data.msg,
+            })
+          }
+        })
+      },
+      seachers: function () {
+        this.init()
+      },
       handleClick(row) {
         console.log(row);
       },
       handleSelectionChange(val) {
-        this.multipleSelection = val;
-        console.log(this.multipleSelection);
+        console.log(val);
+        val.forEach(info => {
+          if (this.multipleSelection.indexOf(info.userId) == -1) {
+            this.multipleSelection.push(info.userId)
+          }
+        })
       },
       filterHandler(value, row, column) {
         const property = column['property'];
@@ -129,10 +172,22 @@
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        this.pageSize = val;
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.currentPage = val;
       },
+      formatStatus: function (row) {
+        return row.status == 1 ? "正常" : "失效";
+      },
+      formatRoles(row) {
+        let role = '';
+        row.roleList.forEach(info => {
+          role += info.roleName.toString() + " ";
+        });
+        return role;
+      }
     },
   }
 </script>
