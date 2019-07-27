@@ -28,6 +28,7 @@ http.interceptors.request.use(config => {
  */
 http.interceptors.response.use(response => {
   if (response.data && response.data.code === 403) { // 403 token失效
+    alert(response.data.msg);
     Vue.cookie.delete('token');
     router.push({name: 'login'})
   }

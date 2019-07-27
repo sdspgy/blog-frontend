@@ -8,6 +8,7 @@ export default new Router({
     {
       path: '/',
       component: resolve => require(['../components/page/Login.vue'], resolve),
+      name: 'login',
       meta: {title: '登录'},
     },
     {
@@ -24,7 +25,14 @@ export default new Router({
         {
           path: '/user',
           component: resolve => require(['../components/page/User.vue'], resolve),
-          meta: {title: '用户管理'}
+          meta: {title: '用户管理'},
+          children: [
+            {
+              path: '/test',
+              component: resolve => require(['../components/page/Test.vue'], resolve),
+              meta: {title: 'test'}
+            },
+          ]
         },
         {
           path: '/icon',
