@@ -237,17 +237,19 @@
       },
       //添加用户
       addUser: function () {
+        let rolesString = "";
+        for (let i = 0; i < this.form.roles.length; i++) {
+          rolesString += this.form.roles[i] + ",";
+        }
         let params = {
-          'roleIdList': JSON.stringify(this.form.roles),
+          'roleIdList': rolesString,
           'username': this.form.name,
           'status': this.form.region,
         }
         this.$http({
           url: this.$http.adornUrl('admin/sys/user/insertUser'),
           method: 'post',
-          data: ({
-            'roleIdList': this.form.roles,
-          }),
+          data: ({}),
           params: params
         }).then(({data}) => {
           if (data && data.code === 200) {

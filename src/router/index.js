@@ -6,10 +6,16 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/login',
       component: resolve => require(['../components/page/Login.vue'], resolve),
       name: 'login',
       meta: {title: '登录'},
+    },
+    {
+      path: '/',
+      component: resolve => require(['../components/common/Blog.vue'], resolve),
+      name: 'blog',
+      meta: {title: 'Blog'},
     },
     {
       path: '/home',
