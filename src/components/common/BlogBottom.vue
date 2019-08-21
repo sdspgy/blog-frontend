@@ -15,11 +15,10 @@
 
 <style scoped>
 .blogBottom{
-  width: 99%;
+  width: 99.8%;
   height: 100px;
-  border: 1px solid antiquewhite;
-  background-color: #f56c6c;
+  background-color: #fff;
   position: relative;
-  bottom: -100px;
+  bottom: -50px;
 }
 </style>
