@@ -1,5 +1,6 @@
 <template>
-  <div class="blogHeader"></div>
+  <div class="blogHeader">
+  </div>
 </template>
 
 <script>
@@ -10,8 +11,11 @@
 
 <style scoped>
   .blogHeader{
-    width: 100%;
+    width: 99%;
     height: 50px;
     background-color: #20a0ff;
+    position: fixed;
+    top: 0;
+    z-index: 99;
   }
 </style>

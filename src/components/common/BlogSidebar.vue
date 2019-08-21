@@ -1,20 +1,36 @@
 <template>
-  <div class="blogSidebar"></div>
+  <div class="blogSidebar">
+    <div class="childSidebar" v-for="item ,index in childSidebarList">
+      {{index}}
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "BlogSidebar"
+  export default {
+    name: "BlogSidebar",
+    data() {
+      return {
+        childSidebarList: [1, 2, 3]
+      }
     }
+  }
 </script>
 
 <style scoped>
-  .blogSidebar{
-    position: absolute;
-    top: 50px;
-    right: 0;
-    width: 19%;
-    height: 700px;
-    background-color: #97a8be;
+  .blogSidebar {
+    position: relative;
+    left: 75%;
+    bottom: 282%;
+    width: 20%;
+    /*background-color: #97a8be;*/
+  }
+
+  .childSidebar {
+    width: 90%;
+    height: 300px;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 10px;
   }
 </style>

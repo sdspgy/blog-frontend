@@ -19,8 +19,8 @@
     data() {
       return {
         dataForm: {
-          userName: '',
-          password: '',
+          userName: 'admin',
+          password: '123456',
         },
         dataRule: {
           userName: [
@@ -71,7 +71,6 @@
   width: 30%;
   height: 300px;
   margin: 100px auto;
-  /*border: 1px solid #20a0ff;*/
   font-family: "Times New Roman", Georgia, Serif;
   font-size: 12px;
   text-align: center;
