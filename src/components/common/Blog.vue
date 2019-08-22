@@ -3,6 +3,7 @@
     <v-blog-header></v-blog-header>
     <v-blog-main></v-blog-main>
     <v-blog-bottom></v-blog-bottom>
+    <v-blog-back-top></v-blog-back-top>
   </div>
 </template>
 
@@ -10,7 +11,8 @@
   import vBlogHeader from "./BlogHeader";
   import vBlogMain from "./BlogMain";
   import vBlogBottom from "./BlogBottom";
-  import {love} from "./love"
+  import vBlogBackTop from "./BlogBackTop";
+  import {love} from "./love";
 
   export default {
     name: "Blog",
@@ -18,12 +20,14 @@
       return {}
     },
     components: {
-      vBlogHeader, vBlogMain, vBlogBottom,
+      vBlogHeader, vBlogMain, vBlogBottom, vBlogBackTop
     },
     mounted() {
       love();
     },
+    methods: {
 
+    }
   }
 </script>
 
@@ -42,7 +46,7 @@
   .blog::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    background: #f99393;
+    background: #3cd4c9;
   }
 
   .blog::-webkit-scrollbar-track { /*滚动条里面轨道*/
@@ -50,4 +54,5 @@
     border-radius: 0;
     background: #fff;
   }
+
 </style>

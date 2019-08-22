@@ -1,9 +1,9 @@
 <template>
   <div class="blogHeader">
-    <div class="img">
-      <img :src="url">
-    </div>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <div class="img">
+        <img :src="url" alt="">
+      </div>
       <el-menu-item index="1"></el-menu-item>
       <el-submenu index="2">
         <template slot="title">主页</template>
@@ -24,7 +24,8 @@
 </template>
 
 <script>
-  import img from  '../../assets/img/img.jpg';
+  import img from '../../assets/img/img.jpg';
+
   export default {
     name: "BlogHeader",
     data() {
@@ -60,15 +61,16 @@
 
   .img img {
     position: absolute;
-    left: 10px;
+    left: -5px;
     top: 2px;
     width: 55px;
     height: 55px;
     border-radius: 50%;
+    z-index: 100;
   }
 
   .el-menu-demo {
-    width: 90%;
-    left: 10%;
+    width: 95%;
+    left: 2%;
   }
 </style>
