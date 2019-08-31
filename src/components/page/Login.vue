@@ -67,12 +67,12 @@
 </script>
 
 <style scoped>
-.loginTable {
-  width: 30%;
-  height: 300px;
-  margin: 100px auto;
-  font-family: "Times New Roman", Georgia, Serif;
-  font-size: 12px;
-  text-align: center;
-}
+  .loginTable {
+    width: 30%;
+    height: 300px;
+    margin: 100px auto;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 12px;
+    text-align: center;
+  }
 </style>

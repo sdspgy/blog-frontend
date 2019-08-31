@@ -4,10 +4,8 @@
        @mouseenter="enter($event)"
        @mouseleave="leave($event)">
     <ul>
-      <li>邮箱</li>
-      <li>573691723@qq.com</li>
-      <li>电话</li>
-      <li>13102389765</li>
+      <li> </li>
+      <li>微信</li>
     </ul>
     <div class="wx"><img :src="url" alt=""></div>
     <div class="title">在线交流</div>
@@ -15,7 +13,7 @@
 </template>
 
 <script>
-  import img from '../../assets/img/img.jpg';
+  import img from '../../assets/img/wx-tyz.jpg';
 
   export default {
     name: "BlogBackTop",
@@ -42,17 +40,17 @@
     },
     methods: {
       backTopClick() {
-        console.log("-------")
+
       },
 
       scrollToTop() {
-        console.log("-------")
+
       },
       enter() {
-        console.log("enter")
+
       },
       leave() {
-        console.log("leave")
+
       }
 
     },
@@ -95,7 +93,7 @@
   }
 
   .wx {
-    margin: -1% 18%;
+    margin: 15% 18%;
   }
 
   .title {

@@ -1,8 +1,12 @@
 <template>
   <div class="blog">
-    <v-blog-header></v-blog-header>
+    <v-adaptation>
+      <v-blog-header></v-blog-header>
+    </v-adaptation>
     <v-blog-main></v-blog-main>
-    <v-blog-bottom></v-blog-bottom>
+    <v-adaptation>
+      <v-blog-bottom></v-blog-bottom>
+    </v-adaptation>
     <v-blog-back-top></v-blog-back-top>
   </div>
 </template>
@@ -12,6 +16,7 @@
   import vBlogMain from "./BlogMain";
   import vBlogBottom from "./BlogBottom";
   import vBlogBackTop from "./BlogBackTop";
+  import vAdaptation from "./Adaptation";
   import {love} from "./love";
 
   export default {
@@ -20,14 +25,12 @@
       return {}
     },
     components: {
-      vBlogHeader, vBlogMain, vBlogBottom, vBlogBackTop
+      vBlogHeader, vBlogMain, vBlogBottom, vBlogBackTop, vAdaptation
     },
     mounted() {
       love();
     },
-    methods: {
-
-    }
+    methods: {}
   }
 </script>
 

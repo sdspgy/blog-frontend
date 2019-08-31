@@ -16,6 +16,9 @@
         </div>
         <div class="letterText">
           <el-divider content-position="left">知秋</el-divider>
+          <ul>
+            <li v-for="data in item.loveLetters">{{data}}</li>
+          </ul>
         </div>
         <div class="letterCharm">
           <p><i class="el-icon-timer"></i>&nbsp;2019-08-19</p>
@@ -56,25 +59,34 @@
     data() {
       return {
         loveLetterList: [{
-          text: 1
+          text: 1,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }, {
-          text: 2
+          text: 2,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }, {
-          text: 3
+          text: 3,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }, {
-          text: 4
+          text: 4,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }, {
-          text: 5
+          text: 5,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }, {
-          text: 6
+          text: 6,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }, {
-          text: 7
+          text: 7,
+          loveLetters: ["不遗余力", "不远万里", "认定你"]
         }
           , {
-            text: 8
+            text: 8,
+            loveLetters: ["不遗余力", "不远万里", "认定你"]
           }
           , {
-            text: 9
+            text: 9,
+            loveLetters: ["不遗余力", "不远万里", "认定你"]
           }
           , {
             text: 10
@@ -130,6 +142,19 @@
     background-color: #fff;
     margin: 15px auto;
     box-shadow: -5px 0 9px -4px #465056;
+    position: relative;
+  }
+
+  .loveLetter ul {
+    position: absolute;
+    left: 15%;
+  }
+
+  .loveLetter ul li {
+    list-style-type: none;
+    font-family: 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 8px;
   }
 
   .loveLetter:hover {
@@ -144,12 +169,12 @@
   }
 
   .img img {
-    width: 347px;
+    width: 400px;
     height: 200px;
   }
 
   .letterImg {
-    width: 25%;
+    width: 17%;
     height: 65%;
     margin: 10px 0 0 10px;
     border-radius: 10px;

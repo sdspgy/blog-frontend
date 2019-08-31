@@ -1,24 +1,20 @@
 <template>
   <div class="blogHeader">
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <div class="img">
-        <img :src="url" alt="">
-      </div>
-      <el-menu-item index="1"></el-menu-item>
-      <el-submenu index="2">
+    <div class="img">
+      <img :src="url" alt="">
+    </div>
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" active-text-color="#409EFF" text-color="" @select="handleSelect">
+      <el-submenu index="1">
         <template slot="title">主页</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        <el-menu-item index="1-1">选项1</el-menu-item>
+        <el-menu-item index="1-2">选项2</el-menu-item>
+        <el-submenu index="1-3">
+          <template slot="title">选项3</template>
+          <el-menu-item index="1-3-1">选项1</el-menu-item>
+          <el-menu-item index="1-3-2">选项2</el-menu-item>
         </el-submenu>
       </el-submenu>
-      <el-menu-item index="3" disabled>消息中心</el-menu-item>
-      <el-menu-item index="4"><a href="" target="_blank">订单管理</a></el-menu-item>
+      <el-menu-item style="float: right" index="9"><a href="" target="_blank">后台管理</a></el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -30,7 +26,7 @@
     name: "BlogHeader",
     data() {
       return {
-        activeIndex: '1',
+        activeIndex: '1-1',
         url: img
       };
     },
@@ -61,7 +57,7 @@
 
   .img img {
     position: absolute;
-    left: -5px;
+    left: 1%;
     top: 2px;
     width: 55px;
     height: 55px;
@@ -70,7 +66,7 @@
   }
 
   .el-menu-demo {
-    width: 95%;
-    left: 2%;
+    width: 94%;
+    left: 6%;
   }
 </style>

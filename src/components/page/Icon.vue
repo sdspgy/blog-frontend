@@ -42,7 +42,7 @@
 
 <script>
   export default {
-    data: function(){
+    data: function () {
       return {
         keyword: '',
         iconList: [
@@ -175,7 +175,7 @@
       }
     },
     computed: {
-      list(){
+      list() {
         return this.iconList.filter((item) => {
           return item.indexOf(this.keyword) !== -1;
         })
@@ -185,28 +185,33 @@
 </script>
 
 <style scoped>
-  .example-p{
+  .example-p {
     height: 45px;
     display: flex;
     align-items: center;
   }
-  .search-box{
+
+  .search-box {
     text-align: center;
     margin-top: 10px;
   }
-  .search{
+
+  .search {
     width: 300px;
   }
-  ul,li{
+
+  ul, li {
     list-style: none;
   }
-  .icon-li{
+
+  .icon-li {
     display: inline-block;
     padding: 10px;
     width: 120px;
     height: 120px;
   }
-  .icon-li-content{
+
+  .icon-li-content {
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -214,11 +219,13 @@
     justify-content: center;
     cursor: pointer;
   }
-  .icon-li-content i{
+
+  .icon-li-content i {
     font-size: 36px;
     color: #606266;
   }
-  .icon-li-content span{
+
+  .icon-li-content span {
     margin-top: 10px;
     color: #787878;
   }
