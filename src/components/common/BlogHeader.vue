@@ -6,12 +6,12 @@
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" active-text-color="#409EFF" text-color="" @select="handleSelect">
       <el-submenu index="1">
         <template slot="title">主页</template>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
+        <el-menu-item index="1-1">指南</el-menu-item>
+        <el-menu-item index="1-2">资源</el-menu-item>
         <el-submenu index="1-3">
-          <template slot="title">选项3</template>
-          <el-menu-item index="1-3-1">选项1</el-menu-item>
-          <el-menu-item index="1-3-2">选项2</el-menu-item>
+          <template slot="title">文档</template>
+          <el-menu-item index="1-3-1">word</el-menu-item>
+          <el-menu-item index="1-3-2">video</el-menu-item>
         </el-submenu>
       </el-submenu>
       <el-menu-item style="float: right" index="9"><a href="" target="_blank">后台管理</a></el-menu-item>

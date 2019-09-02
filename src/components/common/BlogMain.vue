@@ -1,18 +1,23 @@
 <template>
   <div class="blogMain">
+
     <div class="loveLetterAll">
 
       <div class="img">
-        <el-carousel :interval="4000" type="card" height="200px">
+        <el-carousel :interval="4000" type="card" height="320px">
           <el-carousel-item v-for="item in imgs" :key="">
             <img :src="item.img" alt="">
           </el-carousel-item>
         </el-carousel>
       </div>
 
+      <el-row class="write">
+        <el-button type="primary" :loading="false" size="medium" @click="dialogFormVisible = true">留下你的故事</el-button>
+      </el-row>
+
       <div class="loveLetter" v-for="item,index in loveLetterList">
         <div class="letterImg">
-          <img src="../../assets/img/img.jpg" alt="">
+          <img v-show="false" src="../../assets/img/img.jpg" alt="">
         </div>
         <div class="letterText">
           <el-divider content-position="left">知秋</el-divider>
@@ -25,7 +30,9 @@
           <p><i class="el-icon-view"></i>&nbsp;999</p>
           <p><i style="font-size: 25px;padding-top: 8px" class="el-icon-star-on" @click="praise(index)"></i>&nbsp;555
           </p>
-          <el-button type="primary" mini plain round>阅读详情</el-button>
+          <el-button type="primary" mini plain round
+                     @click="open">阅读详情
+          </el-button>
         </div>
       </div>
 
@@ -45,11 +52,51 @@
     </div>
 
     <div v-show="siderIsShow" class="blogSidebar">
-      <div class="childSidebar" v-for="item ,index in childSidebarList">
+      <div class="childSidebar">
+        <div class="block">
+          <el-timeline>
+            <el-timeline-item timestamp="2019/8/1" placement="top" :color="timeColor">
+              <el-card>
+                <h4>#赤伶#</h4>
+                <p>Beauty is being the best possible version of yourself on the inside and out...</p>
+              </el-card>
+            </el-timeline-item>
+            <el-timeline-item timestamp="2019/7/1" placement="top">
+              <el-card>
+                <h4>#无期#</h4>
+                <p>Life had a lot of things is futile, but we still want to experience...</p>
+              </el-card>
+            </el-timeline-item>
+            <el-timeline-item timestamp="2019/6/1" placement="top">
+              <el-card>
+                <h4>#步戏#</h4>
+                <p>Some things, you hide it in my heart, perhaps better, so a long time, becomes the story...</p>
+              </el-card>
+            </el-timeline-item>
+          </el-timeline>
+        </div>
       </div>
     </div>
 
+    <el-dialog title="Letter" :visible.sync="dialogFormVisible">
+      <el-alert
+        title="💌格式提示：XXX；XXX；XXX (使用中文逗号分割)"
+        :closable="false"
+        type="success">
+      </el-alert>
+      <el-form :model="form">
+        <el-form-item label="三行情书" :label-width="formLabelWidth">
+          <el-input v-model="form.name" placeholder="" autocomplete="off" clearable></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
+
 </template>
 
 <script>
@@ -79,24 +126,18 @@
         }, {
           text: 7,
           loveLetters: ["不遗余力", "不远万里", "认定你"]
-        }
-          , {
-            text: 8,
-            loveLetters: ["不遗余力", "不远万里", "认定你"]
-          }
-          , {
-            text: 9,
-            loveLetters: ["不遗余力", "不远万里", "认定你"]
-          }
-          , {
-            text: 10
-          }],
-        childSidebarList: [1, 2, 3],
-        imgs: [{img: "http://img5.imgtn.bdimg.com/it/u=4279997,3658479762&fm=26&gp=0.jpg"},
+        }],
+        imgs: [{img: "http://img.juimg.com/tuku/yulantu/110509/9126-11050z6292665.jpg"},
           {img: "http://img5.imgtn.bdimg.com/it/u=3742433631,3601556094&fm=26&gp=0.jpg"},
           {img: "http://img5.imgtn.bdimg.com/it/u=1393754501,3411007336&fm=26&gp=0.jpg"}],
-        currentPage4: 4,
+        currentPage4: 1,
         siderIsShow: true,
+        timeColor: "#0bbd87",
+        dialogFormVisible: false,
+        form: {
+          name: '',
+        },
+        formLabelWidth: '120px',
       }
     },
     mounted() {
@@ -114,6 +155,16 @@
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+      },
+      dialogFormVisible() {
+        console.log("------writeLetter");
+      },
+      open() {
+        this.$notify({
+          title: '警告',
+          message: '该功能待开发',
+          type: 'warning'
+        });
       },
     },
   }
@@ -166,11 +217,17 @@
     height: 200px;
     border-radius: 10px;
     margin: 25px auto;
+    margin-bottom: 150px;
   }
 
   .img img {
-    width: 400px;
-    height: 200px;
+    width: 600px;
+    height: 310px;
+  }
+
+  .write {
+    position: relative;
+    right: -44%;
   }
 
   .letterImg {
@@ -240,7 +297,7 @@
 
   .childSidebar {
     width: 90%;
-    height: 300px;
+    height: 800px;
     background-color: #fff;
     margin: 20px auto;
     border-radius: 10px;

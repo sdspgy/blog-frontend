@@ -3,10 +3,13 @@
     <v-adaptation>
       <v-blog-header></v-blog-header>
     </v-adaptation>
+
     <v-blog-main></v-blog-main>
+
     <v-adaptation>
       <v-blog-bottom></v-blog-bottom>
     </v-adaptation>
+
     <v-blog-back-top></v-blog-back-top>
   </div>
 </template>
