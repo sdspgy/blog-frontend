@@ -78,6 +78,25 @@
       </div>
     </div>
 
+    <el-upload
+      class="upload-demo"
+      action="http://127.0.0.1:9001/upload"
+      :on-preview="handlePreview"
+      :on-remove="handleRemove"
+      :before-remove="beforeRemove"
+      multiple
+      :limit="3"
+      :on-exceed="handleExceed"
+      :on-success="handleAvatarSuccess"
+      :file-list="fileList">
+      <el-button size="small" type="primary">点击上传</el-button>
+      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+    </el-upload>
+
+    <div>
+      <el-button type="primary" @click="excelEvent">excel 导出</el-button>
+    </div>
+
     <el-dialog title="Letter" :visible.sync="dialogFormVisible">
       <el-alert
         title="💌格式提示：XXX；XXX；XXX (使用中文逗号分割)"
@@ -138,6 +157,13 @@
           name: '',
         },
         formLabelWidth: '120px',
+        fileList: [{
+          name: 'food.jpeg',
+          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+        }, {
+          name: 'food2.jpeg',
+          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+        }],
       }
     },
     mounted() {
@@ -165,6 +191,47 @@
           message: '该功能待开发',
           type: 'warning'
         });
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handleExceed(files, fileList) {
+        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      beforeRemove(file, fileList) {
+        return this.$confirm(`确定移除 ${file.name}？`);
+      },
+      handleAvatarSuccess(res, file) {
+        debugger
+        let url = file.raw.name;
+        console.log(url);
+      },
+      excelEvent() {
+        this.$http({
+          url: this.$http.adornUrl('expor'),
+          method: 'put',
+          responseType: 'blob',
+        }).then((response) => {
+          debugger
+          const blob = new Blob([response.data]);
+          const fileName = 'user.xls';
+          const linkNode = document.createElement('a');
+
+          linkNode.download = fileName; //a标签的download属性规定下载文件的名称
+          linkNode.style.display = 'none';
+          linkNode.href = URL.createObjectURL(blob); //生成一个Blob URL
+          document.body.appendChild(linkNode);
+          linkNode.click();  //模拟在按钮上的一次鼠标单击
+
+          URL.revokeObjectURL(linkNode.href); // 释放URL 对象
+          document.body.removeChild(linkNode);
+
+        }).catch(function (error) {
+          console.log(error);
+        })
       },
     },
   }
